@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulación Numérica | Crisis Económica</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- KaTeX for math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+</head>
+<body>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand">
+      <span class="nav-icon">♠</span>
+      <span>Desafío Final</span>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menú">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#inicio" class="nav-link">Inicio</a></li>
+      <li><a href="#contexto" class="nav-link">Contexto</a></li>
+      <li><a href="#modA" class="nav-link">Sistemas de Ecuaciones Lineales</a></li>
+      <li><a href="#modB" class="nav-link">Ecuaciones Diferenciales</a></li>
+      <li><a href="#modC" class="nav-link">Interpolación</a></li>
+      <li><a href="#modD" class="nav-link">Integración Numérica</a></li>
+      <li><a href="#modE" class="nav-link">Raíces de Ecuaciones</a></li>
+      <li><a href="#conclusiones" class="nav-link">Conclusiones</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="inicio" class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">
+        <br>
+        Simulación Numérica del<br>
+        <span class="accent">Abastecimiento, Precios</span><br>
+        y Economía Familiar
+      </h1>
+      <p class="hero-subtitle">en Contexto de Crisis</p>
+      <p class="hero-desc">
+        Aplicación de métodos numéricos computacionales para modelar, analizar e interpretar
+        escenarios de crisis económica: distribución de recursos, evolución de reservas,
+        proyección de precios y costo acumulado de la canasta familiar.
+      </p>
+      <div class="hero-tags">
+        <span class="tag">Sistemas Lineales</span>
+        <span class="tag">Ecuaciones Diferenciales</span>
+        <span class="tag">Interpolación</span>
+        <span class="tag">Integración Numérica</span>
+        <span class="tag">Raíces de Ecuaciones</span>
+      </div>
+      <a href="#contexto" class="btn-hero">Explorar Simulación ↓</a>
+    </div>
+    <div class="hero-graph-preview">
+      <canvas id="heroChart" width="420" height="260"></canvas>
+    </div>
+  </section>
+
+  <!-- ===================== CONTEXTO ===================== -->
+  <section id="contexto" class="section bg-dark">
+    <div class="container">
+      <div class="section-label">Punto de Partida</div>
+      <h2 class="section-title">Contexto del Problema Real</h2>
+      <div class="context-grid">
+        <div class="context-card">
+          <div class="ctx-icon">🏭</div>
+          <h3>Desabastecimiento</h3>
+          <p>Durante períodos de crisis económica, la distribución de combustible y alimentos desde plantas productoras hacia zonas urbanas se vuelve desigual e ineficiente, generando escasez en sectores vulnerables.</p>
+        </div>
+        <div class="context-card">
+          <div class="ctx-icon">📈</div>
+          <h3>Inflación de Precios</h3>
+          <p>Los precios de la canasta básica se incrementan de forma no lineal. Modelar esta tendencia permite anticipar el costo futuro y planificar políticas de subsistencia familiar.</p>
+        </div>
+        <div class="context-card">
+          <div class="ctx-icon">⛽</div>
+          <h3>Reservas Críticas</h3>
+          <p>Las reservas de recursos esenciales (combustible, alimentos) se comportan como sistemas dinámicos con entradas y salidas variables que deben monitorearse numéricamente.</p>
+        </div>
+        <div class="context-card">
+          <div class="ctx-icon">💰</div>
+          <h3>Punto de Quiebre</h3>
+          <p>Existe un precio crítico o nivel de reserva en el que el sistema colapsa. Encontrar ese punto mediante métodos de raíces permite actuar antes de la crisis total.</p>
+        </div>
+      </div>
+
+      <div class="objective-box">
+        <h3>🎯 Objetivo General</h3>
+        <p>Desarrollar una herramienta de simulación numérica interactiva que aplique cinco familias de métodos computacionales para analizar el comportamiento del abastecimiento, evolución de precios y economía familiar durante períodos de crisis. Los resultados permiten tomar decisiones informadas basadas en modelos matemáticos verificables.</p>
+      </div>
+
+      <div class="methods-overview">
+        <h3>Métodos Numéricos Implementados</h3>
+        <div class="methods-grid">
+          <div class="method-item"><span class="mod-badge A">A</span><strong>Sistemas de Ecuaciones</strong><br><small>Jacobi · Gauss-Seidel · LU · SOR · Gradiente Conjugado</small></div>
+          <div class="method-item"><span class="mod-badge B">B</span><strong>Ecuaciones Diferenciales</strong><br><small>Euler · Heun · Runge-Kutta 4</small></div>
+          <div class="method-item"><span class="mod-badge C">C</span><strong>Interpolación</strong><br><small>Lagrange · Newton · Splines Cúbicos</small></div>
+          <div class="method-item"><span class="mod-badge D">D</span><strong>Integración Numérica</strong><br><small>Trapecio · Simpson 1/3 · Simpson 3/8</small></div>
+          <div class="method-item"><span class="mod-badge E">E</span><strong>Raíces de Ecuaciones</strong><br><small>Bisección · Newton-Raphson · Secante</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MÓDULO A ===================== -->
+  <section id="modA" class="section bg-light">
+    <div class="container">
+      <div class="section-label mod-label A">Módulo A</div>
+      <h2 class="section-title">Sistemas de Ecuaciones Lineales</h2>
+      <div class="module-intro">
+        <p><strong>Escenario:</strong> Una ciudad en crisis tiene <strong>3 plantas distribuidoras</strong> de combustible y <strong>3 zonas urbanas</strong> con demandas específicas. Necesitamos determinar cuánto debe enviar cada planta a cada zona para satisfacer exactamente la demanda, respetando las capacidades máximas de cada planta.</p>
+        <p><strong>Formulación matemática:</strong> El sistema Ax = b representa las restricciones de oferta-demanda donde cada ecuación modela el balance de flujo entre una planta y las zonas que abastece.</p>
+      </div>
+
+      <div class="form-card">
+        <h3>⚙ Configurar Parámetros del Sistema</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Demanda Zona 1 (toneladas/día) <span class="tooltip" title="Cantidad de combustible requerida diariamente por la zona norte">ℹ</span></label>
+            <input type="number" id="sA_d1" value="150" min="1" max="500" />
+          </div>
+          <div class="form-group">
+            <label>Demanda Zona 2 (toneladas/día)</label>
+            <input type="number" id="sA_d2" value="200" min="1" max="500" />
+          </div>
+          <div class="form-group">
+            <label>Demanda Zona 3 (toneladas/día)</label>
+            <input type="number" id="sA_d3" value="180" min="1" max="500" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Capacidad Planta 1 (toneladas/día)</label>
+            <input type="number" id="sA_c1" value="200" min="1" max="600" />
+          </div>
+          <div class="form-group">
+            <label>Capacidad Planta 2 (toneladas/día)</label>
+            <input type="number" id="sA_c2" value="180" min="1" max="600" />
+          </div>
+          <div class="form-group">
+            <label>Capacidad Planta 3 (toneladas/día)</label>
+            <input type="number" id="sA_c3" value="150" min="1" max="600" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Tolerancia de convergencia</label>
+            <input type="number" id="sA_tol" value="0.0001" step="0.00001" min="0.000001" max="0.1" />
+          </div>
+          <div class="form-group">
+            <label>Máximo de iteraciones</label>
+            <input type="number" id="sA_maxIter" value="100" min="10" max="1000" />
+          </div>
+          <div class="form-group">
+            <label>Factor de relajación ω (SOR)</label>
+            <input type="number" id="sA_omega" value="1.2" step="0.1" min="0.1" max="1.9" />
+          </div>
+        </div>
+        <button class="btn-primary" onclick="resolverSistemas()">▶ Ejecutar Todos los Métodos</button>
+      </div>
+
+      <div id="sA_results" class="results-area hidden">
+        <div class="matrix-display">
+          <h3>📊 Sistema de Ecuaciones (Matriz Aumentada [A|b])</h3>
+          <div id="sA_matrix" class="matrix-grid"></div>
+        </div>
+        <div class="comparison-cards" id="sA_comparison"></div>
+        <div class="chart-container">
+          <canvas id="chartSistemas"></canvas>
+          <p class="chart-desc" id="sA_chartDesc"></p>
+        </div>
+        <div class="interpretation-box" id="sA_interpretation"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MÓDULO B ===================== -->
+  <section id="modB" class="section bg-dark">
+    <div class="container">
+      <div class="section-label mod-label B">Módulo B</div>
+      <h2 class="section-title">Ecuaciones Diferenciales Ordinarias</h2>
+      <div class="module-intro dark">
+        <p><strong>Modelo:</strong> La dinámica de las reservas de combustible sigue la ecuación diferencial <em>R'(t) = entrada(t) − consumo(t)</em>, donde R(t) es el nivel de reserva en el instante t. Este modelo permite predecir cuándo se agotará el suministro bajo distintos escenarios.</p>
+        <p><strong>Variables:</strong> R(t) = Reserva (toneladas), t = Tiempo (días), entrada = suministro diario, consumo = demanda diaria.</p>
+      </div>
+
+      <div class="form-card dark">
+        <h3>⚙ Parámetros del Modelo Dinámico</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Reserva inicial R₀ (toneladas) <span class="tooltip" title="Nivel de combustible al inicio de la simulación">ℹ</span></label>
+            <input type="number" id="sB_r0" value="1000" min="0" max="10000" />
+          </div>
+          <div class="form-group">
+            <label>Entrada diaria (toneladas/día)</label>
+            <input type="number" id="sB_entrada" value="80" min="0" max="500" />
+          </div>
+          <div class="form-group">
+            <label>Consumo diario (toneladas/día)</label>
+            <input type="number" id="sB_consumo" value="120" min="0" max="500" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Tiempo de simulación (días)</label>
+            <input type="number" id="sB_tiempo" value="30" min="5" max="365" />
+          </div>
+          <div class="form-group">
+            <label>Paso h (días)</label>
+            <input type="number" id="sB_h" value="1" step="0.1" min="0.1" max="5" />
+          </div>
+        </div>
+        <button class="btn-primary" onclick="resolverDiferenciales()">▶ Simular Dinámica de Reservas</button>
+      </div>
+
+      <div id="sB_results" class="results-area hidden">
+        <div class="chart-container">
+          <canvas id="chartDiferenciales"></canvas>
+          <p class="chart-desc" id="sB_chartDesc"></p>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table" id="sB_table"></table>
+        </div>
+        <div class="comparison-cards" id="sB_comparison"></div>
+        <div class="interpretation-box dark" id="sB_interpretation"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MÓDULO C ===================== -->
+  <section id="modC" class="section bg-light">
+    <div class="container">
+      <div class="section-label mod-label C">Módulo C</div>
+      <h2 class="section-title">Interpolación de Precios</h2>
+      <div class="module-intro">
+        <p><strong>Escenario:</strong> Los precios de la canasta básica se registran en días específicos durante la crisis. La interpolación permite estimar el precio en cualquier día intermedio y proyectar tendencias futuras sin necesidad de medir cada día.</p>
+        <p><strong>Datos:</strong> Los puntos (día, precio) representan observaciones reales del mercado. Puede agregar, modificar o eliminar puntos para explorar diferentes escenarios de inflación.</p>
+      </div>
+
+      <div class="form-card">
+        <h3>⚙ Datos de Precios Observados</h3>
+        <div id="sC_pointsContainer" class="points-container"></div>
+        <div class="form-row">
+          <button class="btn-secondary" onclick="agregarPuntoC()">+ Agregar Punto</button>
+          <button class="btn-secondary" onclick="resetearPuntosC()">↺ Restaurar Defaults</button>
+        </div>
+        <hr class="divider" />
+        <div class="form-row">
+          <div class="form-group">
+            <label>Estimar precio en el día:</label>
+            <input type="number" id="sC_xEstimar" value="12" min="1" max="100" />
+          </div>
+        </div>
+        <button class="btn-primary" onclick="resolverInterpolacion()">▶ Interpolar y Estimar</button>
+      </div>
+
+      <div id="sC_results" class="results-area hidden">
+        <div class="chart-container">
+          <canvas id="chartInterpolacion"></canvas>
+          <p class="chart-desc" id="sC_chartDesc"></p>
+        </div>
+        <div class="comparison-cards" id="sC_comparison"></div>
+        <div class="table-scroll">
+          <table class="data-table" id="sC_table"></table>
+        </div>
+        <div class="interpretation-box" id="sC_interpretation"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MÓDULO D ===================== -->
+  <section id="modD" class="section bg-dark">
+    <div class="container">
+      <div class="section-label mod-label D">Módulo D</div>
+      <h2 class="section-title">Integración Numérica</h2>
+      <div class="module-intro dark">
+        <p><strong>Escenario:</strong> El costo diario de la canasta familiar varía con el tiempo. La integral de la función de costo entre dos fechas representa el <strong>gasto total acumulado</strong> durante ese período. Este valor es fundamental para planificar subsidios y políticas de protección social.</p>
+        <p><strong>Interpretación geométrica:</strong> El área bajo la curva de precios equivale al gasto total. Los métodos numéricos aproximan esta área dividiendo el intervalo en subintervalos y sumando las áreas de trapecios o parábolas.</p>
+      </div>
+
+      <div class="form-card dark">
+        <h3>⚙ Función de Costo Diario f(t)</h3>
+        <p class="form-hint">f(t) = costo en el día t (Bs/día). Modele la función como desee usando operadores matemáticos estándar.</p>
+        <div class="form-row">
+          <div class="form-group wide">
+            <label>Expresión de f(t):</label>
+            <input type="text" id="sD_funcion" value="8 + 0.5*t + 0.02*t*t" placeholder="Ej: 8 + 0.5*t + 0.02*t*t" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Día inicial (a)</label>
+            <input type="number" id="sD_a" value="0" min="0" max="100" />
+          </div>
+          <div class="form-group">
+            <label>Día final (b)</label>
+            <input type="number" id="sD_b" value="30" min="1" max="365" />
+          </div>
+          <div class="form-group">
+            <label>Número de subintervalos (n)</label>
+            <input type="number" id="sD_n" value="30" min="2" max="200" step="2" />
+          </div>
+        </div>
+        <button class="btn-primary" onclick="resolverIntegracion()">▶ Calcular Costo Acumulado</button>
+      </div>
+
+      <div id="sD_results" class="results-area hidden">
+        <div class="chart-container">
+          <canvas id="chartIntegracion"></canvas>
+          <p class="chart-desc" id="sD_chartDesc"></p>
+        </div>
+        <div class="comparison-cards" id="sD_comparison"></div>
+        <div class="interpretation-box dark" id="sD_interpretation"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MÓDULO E ===================== -->
+  <section id="modE" class="section bg-light">
+    <div class="container">
+      <div class="section-label mod-label E">Módulo E</div>
+      <h2 class="section-title">Raíces de Ecuaciones</h2>
+      <div class="module-intro">
+        <p><strong>Escenario:</strong> La función f(x) = Ingreso(x) − Costo(x) modela el equilibrio económico familiar. La raíz de esta función corresponde al <strong>punto de equilibrio</strong>: el nivel de producción o precio donde los ingresos igualan exactamente a los costos.</p>
+        <p><strong>Función por defecto:</strong> f(x) = 1000 + 50x − 2000 representa un modelo donde a mayor precio x, el ingreso neto crece. La raíz determina el precio mínimo de equilibrio.</p>
+      </div>
+
+      <div class="form-card">
+        <h3>⚙ Configurar Función y Métodos</h3>
+        <div class="form-row">
+          <div class="form-group wide">
+            <label>Función f(x) <span class="tooltip" title="Ingrese la función en términos de x. Puede usar operadores +, -, *, /, ** y Math.">ℹ</span></label>
+            <input type="text" id="sE_funcion" value="1000 + 50*x - 2000" placeholder="Ej: x*x - 4*x + 3" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Límite inferior a</label>
+            <input type="number" id="sE_a" value="0" />
+          </div>
+          <div class="form-group">
+            <label>Límite superior b</label>
+            <input type="number" id="sE_b" value="50" />
+          </div>
+          <div class="form-group">
+            <label>Tolerancia ε</label>
+            <input type="number" id="sE_tol" value="0.0001" step="0.00001" min="0.000001" />
+          </div>
+          <div class="form-group">
+            <label>Máx. iteraciones</label>
+            <input type="number" id="sE_maxIter" value="100" min="10" max="500" />
+          </div>
+        </div>
+        <button class="btn-primary" onclick="resolverRaices()">▶ Encontrar Raíces</button>
+      </div>
+
+      <div id="sE_results" class="results-area hidden">
+        <div class="chart-container">
+          <canvas id="chartRaices"></canvas>
+          <p class="chart-desc" id="sE_chartDesc"></p>
+        </div>
+        <div class="comparison-cards" id="sE_comparison"></div>
+        <div class="table-tabs">
+          <div class="tab-buttons">
+            <button class="tab-btn active" onclick="mostrarTabla('biseccion', this)">Bisección</button>
+            <button class="tab-btn" onclick="mostrarTabla('newton', this)">Newton-Raphson</button>
+            <button class="tab-btn" onclick="mostrarTabla('secante', this)">Secante</button>
+          </div>
+          <div id="tabla_biseccion" class="tab-content active">
+            <div class="table-scroll"><table class="data-table" id="sE_tablaBiseccion"></table></div>
+          </div>
+          <div id="tabla_newton" class="tab-content">
+            <div class="table-scroll"><table class="data-table" id="sE_tablaNewton"></table></div>
+          </div>
+          <div id="tabla_secante" class="tab-content">
+            <div class="table-scroll"><table class="data-table" id="sE_tablaSecante"></table></div>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="chartConvergencia"></canvas>
+          <p class="chart-desc">Comparación de la convergencia del error relativo entre los tres métodos de búsqueda de raíces a lo largo de las iteraciones.</p>
+        </div>
+        <div class="interpretation-box" id="sE_interpretation"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONCLUSIONES ===================== -->
+  <section id="conclusiones" class="section bg-accent">
+    <div class="container">
+      <div class="section-label">Cierre Académico</div>
+      <h2 class="section-title">Conclusiones y Limitaciones</h2>
+
+      <div class="conclusions-grid">
+        <div class="conclusion-card">
+          <div class="conc-num">01</div>
+          <h3>Convergencia de Métodos Iterativos</h3>
+          <p>Los métodos de Gauss-Seidel y SOR convergen más rápidamente que Jacobi en sistemas bien condicionados. El factor de relajación ω óptimo para SOR depende del radio espectral de la matriz de iteración.</p>
+        </div>
+        <div class="conclusion-card">
+          <div class="conc-num">02</div>
+          <h3>Precisión en Ecuaciones Diferenciales</h3>
+          <p>RK4 ofrece error de orden O(h⁴) versus O(h) de Euler. Para simular reservas críticas donde el error puede desencadenar decisiones erróneas, RK4 es el método recomendado.</p>
+        </div>
+        <div class="conclusion-card">
+          <div class="conc-num">03</div>
+          <h3>Interpolación vs. Extrapolación</h3>
+          <p>Los splines cúbicos minimizan las oscilaciones de Runge y son más estables que Lagrange para puntos equidistantes. La extrapolación más allá de los datos observados puede producir estimaciones poco confiables.</p>
+        </div>
+        <div class="conclusion-card">
+          <div class="conc-num">04</div>
+          <h3>Integración y Costo Real</h3>
+          <p>Simpson 1/3 es significativamente más preciso que el método del Trapecio para funciones suaves, con error de orden O(h⁴) vs O(h²). El costo acumulado real puede diferir hasta un 5% entre métodos con pocos subintervalos.</p>
+        </div>
+        <div class="conclusion-card">
+          <div class="conc-num">05</div>
+          <h3>Convergencia Cuadrática de Newton</h3>
+          <p>Newton-Raphson converge cuadráticamente cerca de la raíz, pero requiere derivada no nula y una estimación inicial cercana a la solución. La bisección, aunque más lenta, garantiza convergencia si f(a)·f(b) &lt; 0.</p>
+        </div>
+        <div class="conclusion-card">
+          <div class="conc-num">06</div>
+          <h3>Aplicación al Contexto de Crisis</h3>
+          <p>Los modelos numéricos permiten anticipar el agotamiento de reservas, identificar puntos de quiebre económico y proyectar costos futuros, constituyendo herramientas valiosas para la toma de decisiones en emergencias económicas.</p>
+        </div>
+      </div>
+
+      <div class="limitations-box">
+        <h3>⚠ Limitaciones del Modelo</h3>
+        <ul class="limitations-list">
+          <li><strong>Linealización:</strong> Los sistemas reales de distribución son no lineales; el modelo lineal es una aproximación válida solo en rangos operativos acotados.</li>
+          <li><strong>Parámetros constantes:</strong> Se asume que la tasa de consumo y entrada son constantes. En la realidad, varían con factores externos (estacionalidad, demanda pico).</li>
+          <li><strong>Datos escasos:</strong> La interpolación con pocos puntos puede no capturar variaciones bruscas de precios causadas por eventos inesperados.</li>
+          <li><strong>Modelo estocástico ausente:</strong> El simulador es determinista y no considera incertidumbre estadística en los parámetros de entrada.</li>
+          <li><strong>Escalabilidad:</strong> Los métodos implementados son para sistemas pequeños (3×3). Sistemas reales con cientos de variables requieren métodos dispersos especializados.</li>
+          <li><strong>Precisión numérica:</strong> La aritmética de punto flotante del navegador introduce errores de redondeo que se acumulan en iteraciones muy largas.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">NOTA</div>
+          <p>Proyecto académico de Métodos Numéricos. Todos los cálculos se ejecutan en el navegador sin dependencias de backend.</p>
+        </div>
+        <div>
+          <h4>Módulos</h4>
+          <ul>
+            <li><a href="#modA">A · Sistemas Lineales</a></li>
+            <li><a href="#modB">B · Ecuaciones Diferenciales</a></li>
+            <li><a href="#modC">C · Interpolación</a></li>
+            <li><a href="#modD">D · Integración Numérica</a></li>
+            <li><a href="#modE">E · Raíces de Ecuaciones</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Tecnologías</h4>
+          <ul>
+            <li>HTML5 + CSS3</li>
+            <li>JavaScript</li>
+            <li>Chart.js</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Desafío Final de Métodos Numéricos · Universidad Mayor de San Andrés · 2026</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript modules -->
+  <script src="js/sistemas.js"></script>
+  <script src="js/diferenciales.js"></script>
+  <script src="js/interpolacion.js"></script>
+  <script src="js/integracion.js"></script>
+  <script src="js/raices.js"></script>
+
+  <script>
+    // ── Navbar scroll behavior ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ── Mobile nav toggle ──
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // ── Smooth active link highlight ──
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
+      });
+      navLinks.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+      });
+    });
+
+    // ── Intersection Observer animations ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.context-card, .conclusion-card, .form-card, .module-intro').forEach(el => observer.observe(el));
+
+    // ── Hero chart (preview) ──
+    const heroCtx = document.getElementById('heroChart').getContext('2d');
+    const days = Array.from({length: 31}, (_, i) => i);
+    new Chart(heroCtx, {
+      type: 'line',
+      data: {
+        labels: days,
+        datasets: [
+          { label: 'Reserva (ton)', data: days.map(d => Math.max(0, 1000 - 40*d)), borderColor: '#00e5cc', borderWidth: 2.5, fill: false, tension: 0.4, pointRadius: 0 },
+          { label: 'Precio (Bs)', data: days.map(d => 8 + d*0.6 + 0.015*d*d), borderColor: '#ff6b35', borderWidth: 2.5, fill: false, tension: 0.4, pointRadius: 0 },
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { labels: { color: '#ccc', font: { size: 13 } } } },
+        scales: {
+          x: { ticks: { color: '#888' }, grid: { color: '#333' } },
+          y: { ticks: { color: '#888' }, grid: { color: '#333' } }
+        },
+        animation: { duration: 1500 }
+      }
+    });
+
+    // ── Tab switching (Módulo E) ──
+    function mostrarTabla(id, btn) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tabla_' + id).classList.add('active');
+      if(btn) btn.classList.add('active');
+    }
+  </script>
+</body>
+</html>
