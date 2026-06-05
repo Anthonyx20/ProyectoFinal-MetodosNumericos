@@ -1,7 +1,7 @@
 # Simulación Numérica del Abastecimiento, Precios y Economía Familiar en Contexto de Crisis
 
 > Proyecto Final — Materia: Métodos Numéricos  
-> Universidad · 2025
+> Universidad Mayor de San Andres · 2026
 
 ---
 
@@ -9,10 +9,9 @@
 
 Una vez publicado, la página estará disponible en:
 ```
-https://<tu-usuario>.github.io/<nombre-del-repositorio>/
+https://anthonyx20.github.io/ProyectoFinal-MetodosNumericos/
 ```
 
----
 
 ## 📋 Descripción
 
@@ -29,33 +28,6 @@ Aplicación web interactiva que aplica cinco familias de métodos numéricos com
 | **C** | Interpolación de Precios | Lagrange · Newton (D.D.) · Splines Cúbicos |
 | **D** | Integración Numérica | Trapecio · Simpson 1/3 · Simpson 3/8 |
 | **E** | Raíces de Ecuaciones | Bisección · Newton-Raphson · Secante |
-
----
-
-## 🚀 Cómo Publicar en GitHub Pages
-
-### Opción A — Subir manualmente
-
-1. Crear un repositorio nuevo en GitHub (ej. `metodos-numericos`)
-2. Subir **todos** los archivos y carpetas de este proyecto
-3. Ir a **Settings → Pages**
-4. En **Source**, seleccionar `Deploy from a branch`
-5. Elegir la rama `main` (o `master`) y carpeta `/ (root)`
-6. Hacer clic en **Save**
-7. Esperar ~1 minuto y visitar la URL generada
-
-### Opción B — Git desde consola
-
-```bash
-git init
-git add .
-git commit -m "Initial commit - Simulación Numérica"
-git branch -M main
-git remote add origin https://github.com/<usuario>/<repositorio>.git
-git push -u origin main
-```
-
-Luego activar GitHub Pages desde la configuración del repositorio.
 
 ---
 
@@ -104,7 +76,5 @@ Sin backend. Sin dependencias locales. Todo corre en el navegador.
 - Özsu, M.T. & Valduriez, P. — *Principles of Distributed Database Systems*
 - Chapra, S. & Canale, R. — *Numerical Methods for Engineers*
 - Burden, R.L. & Faires, J.D. — *Numerical Analysis*
-
----
 
 *Proyecto académico — uso educativo*
